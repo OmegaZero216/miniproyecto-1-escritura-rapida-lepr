@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+
+<StackPane fx:id="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.escritura_rapida.controller.gameController">
+   <children>
+       <Pane fx:id="backgroundGrid" styleClass="cyber-grid" />
+       <BorderPane fx:id="mainHud" styleClass="hud-pane">
+           <top>
+               <VBox alignment="TOP_LEFT" spacing="10" styleClass="top-panel">
+                  <children>
+                      <Label fx:id="levelLabel" styleClass="mission-title" text="MISSION LEVEL 01" />
+                      <ProgressBar fx:id="energyTimer" prefWidth="350" progress="1.0" styleClass="energy-bar" />
+                  </children>
+               </VBox>
+           </top>
+           <center>
+               <VBox alignment="CENTER" spacing="30">
+                  <children>
+                      <StackPane fx:id="wordPanel" styleClass="hologram-panel">
+                         <children>
+                             <Label fx:id="targetWord" styleClass="word-display" text="CYBER-ELF" />
+                         </children>
+                      </StackPane>
+                      <TextField fx:id="typingInput" onAction="#handlerText" promptText="TYPE COMMAND..." styleClass="neon-input" />
+                  </children>
+               </VBox>
+           </center>
+           <bottom>
+               <HBox alignment="CENTER" styleClass="bottom-panel">
+                  <children>
+                      <Label fx:id="statusMessage" styleClass="status-text" text="SYSTEM READY" />
+                  </children>
+               </HBox>
+           </bottom>
+       </BorderPane>
+   </children>
+</StackPane>
