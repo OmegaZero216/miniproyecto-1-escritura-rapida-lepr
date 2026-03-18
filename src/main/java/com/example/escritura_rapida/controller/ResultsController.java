@@ -4,6 +4,11 @@ import com.example.escritura_rapida.model.GameManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+import com.example.escritura_rapida.view.GameStage;
 
 public class ResultsController {
     @FXML
@@ -36,7 +41,13 @@ public class ResultsController {
 
     @FXML
     private void handleRetry() {
-        System.out.println("Retry game");
+        try {
+            Stage stage = (Stage) retryButton.getScene().getWindow();
+            stage.close();
+            new GameStage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

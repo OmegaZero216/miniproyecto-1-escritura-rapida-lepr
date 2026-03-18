@@ -11,6 +11,9 @@ public class WordRepository {
         this.words = words;
     }
     public String getRandomWord() {
+        if (words == null || words.isEmpty()) {
+            return "SIN_PALABRAS";
+        }
         return words.get(random.nextInt(words.size()));
     }
 }

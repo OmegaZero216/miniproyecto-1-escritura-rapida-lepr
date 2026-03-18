@@ -7,6 +7,7 @@ import com.example.escritura_rapida.view.UIStateManager;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -50,6 +51,10 @@ public class GameController {
        targetWord.setText(wordService.getRandomWord());
     }
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
     @FXML
     private void handlerText () {
         String text = typingInput.getText();
@@ -65,15 +70,23 @@ public class GameController {
         }
         else {
             gameManager.incorrectWord();
-
             statusMessage.setText("incorrecto, era:" + targetWord.getText());
+
+            if (gameManager.mistakeGameOver()) {
+                timer.stop();
+                handleGameOver();
+            }
         }
 
         typingInput.clear();
     }
+
     private long startTime;
 
     private void startTimer() {
+        if (timer != null) {
+            timer.stop();
+        }
         startTime = System.nanoTime();
         timer = new AnimationTimer() {
             @Override
@@ -88,7 +101,7 @@ public class GameController {
                 if (remaining <= 0) {
                     energyTimer.setProgress(0);
                     stop();
-                    handleTimeGameOver();
+                    handleGameOver();
                     return;
                 }
 
@@ -103,11 +116,7 @@ public class GameController {
         timer.start();
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    private void handleTimeGameOver() {
+    private void handleGameOver() {
         String text = typingInput.getText();
 
         timer.stop();
@@ -120,9 +129,9 @@ public class GameController {
             gameManager.incorrectWord();
             statusMessage.setText("se acabó el tiempo!");
         }
-
-        Stage stage = (Stage) mainHud.getScene().getWindow();
-        ResultsView resultsView = new ResultsView(stage);
-        resultsView.show(gameManager);
+        Platform.runLater(() -> {
+            Stage stage = (Stage) mainHud.getScene().getWindow();
+            new ResultsView().show(stage, gameManager);
+        });
     }
 }

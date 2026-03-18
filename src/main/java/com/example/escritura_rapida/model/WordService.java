@@ -9,10 +9,19 @@ public class WordService {
     public void initializeWords() {
         List<String> downloadedWords = apiClient.fetchWords();
 
+        if (downloadedWords == null || downloadedWords.isEmpty()) {
+            repository.setWords(getFallbackWords());
+            return;
+        }
+
         repository.setWords(downloadedWords);
     }
 
     public String getRandomWord() {
         return repository.getRandomWord();
+    }
+
+    private List<String> getFallbackWords() {
+        return List.of("teclado", "pantalla", "codigo", "rapido", "juego", "nivel");
     }
 }

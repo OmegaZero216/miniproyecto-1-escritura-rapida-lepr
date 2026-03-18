@@ -6,6 +6,8 @@ public class GameManager {
     private int incorrectWords;
     private int totalTime = 20; //segundos
     private int timeRemaining;
+    private int mistakes = 0;
+    private final int MAX_MISTAKES = 1;
 
     public GameManager() {
         resetGame();
@@ -17,12 +19,17 @@ public class GameManager {
         timeRemaining = totalTime;
     }
     public void correctWord() {
+        mistakes = 0;
         score+= 10;
         correctWords++;
     }
     public void incorrectWord() {
+        mistakes++;
         score-= 5;
         incorrectWords++;
+    }
+    public boolean mistakeGameOver() {
+        return mistakes > MAX_MISTAKES;
     }
     public void decreaseTime() {
         timeRemaining -= 2;

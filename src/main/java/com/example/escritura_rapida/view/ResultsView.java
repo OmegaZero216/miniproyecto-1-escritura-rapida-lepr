@@ -10,12 +10,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ResultsView {
-    private Stage stage;
 
-    public ResultsView(Stage stage) {
-        this.stage = stage;
-    }
-    public void show(GameManager gameManager) {
+    public void show(Stage stage, GameManager gameManager) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/escritura_rapida/results-view.fxml"));
             Parent root = loader.load();
