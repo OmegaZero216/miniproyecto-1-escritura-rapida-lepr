@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane styleClass="stats-root" stylesheets="@stats-style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.escritura_rapida.controller.ResultsController">
+   <children>
+   
+       <VBox alignment="CENTER" maxWidth="500" spacing="25" styleClass="stats-panel">
+      <children>
+      
+              <Label styleClass="title" text="MISSION REPORT" />
+      
+              <Separator />
+      
+              <GridPane alignment="CENTER" hgap="20" vgap="15">
+         <children>
+         
+                     <Label styleClass="label" text="Nivel alcanzado:" />
+                     <Label fx:id="levelLabel" styleClass="value" text="0" GridPane.columnIndex="1" />
+         
+                     <Label styleClass="label" text="Puntaje:" GridPane.rowIndex="1" />
+                     <Label fx:id="scoreLabel" styleClass="value" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         
+                     <Label styleClass="label" text="Palabras correctas:" GridPane.rowIndex="2" />
+                     <Label fx:id="correctLabel" styleClass="value" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         
+                     <Label styleClass="label" text="Palabras incorrectas:" GridPane.rowIndex="3" />
+                     <Label fx:id="incorrectLabel" styleClass="value" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         
+                     <Label styleClass="label" text="Tiempo restante:" GridPane.rowIndex="4" />
+                     <Label fx:id="timeLabel" styleClass="value" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         </children>
+               <columnConstraints>
+                  <ColumnConstraints />
+                  <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+      
+              </GridPane>
+              <Separator />
+              <HBox alignment="CENTER" spacing="30">
+                 <children>
+         
+                     <Button fx:id="retryButton" onAction="#handleRetry" styleClass="retry-button" text="RETRY" />
+         
+                     <Button fx:id="exitButton" onAction="#handleExit" styleClass="exit-button" text="EXIT" />
+                 </children>
+              </HBox>
+      </children>
+       </VBox>
+   </children>
+</StackPane>

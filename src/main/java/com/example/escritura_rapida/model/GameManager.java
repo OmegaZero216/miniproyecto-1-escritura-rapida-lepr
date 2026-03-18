@@ -1,13 +1,13 @@
 package com.example.escritura_rapida.model;
 
-public class gameManager {
+public class GameManager {
     private int score;
     private int correctWords;
     private int incorrectWords;
     private int totalTime = 20; //segundos
     private int timeRemaining;
 
-    public gameManager() {
+    public GameManager() {
         resetGame();
     }
     public void resetGame() {
@@ -25,7 +25,7 @@ public class gameManager {
         incorrectWords++;
     }
     public void decreaseTime() {
-        timeRemaining--;
+        timeRemaining -= 2;
     }
     public int getTimeRemaining() {
         return timeRemaining;

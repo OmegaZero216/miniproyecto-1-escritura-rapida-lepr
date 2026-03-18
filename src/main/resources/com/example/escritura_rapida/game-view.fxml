@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.shape.*?>
 
-<StackPane fx:id="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.escritura_rapida.controller.gameController">
+<StackPane fx:id="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.escritura_rapida.controller.GameController">
    <children>
        <Pane fx:id="backgroundGrid" styleClass="cyber-grid" />
        <BorderPane fx:id="mainHud" styleClass="hud-pane">

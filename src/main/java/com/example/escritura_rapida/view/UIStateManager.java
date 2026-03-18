@@ -1,0 +1,44 @@
+package com.example.escritura_rapida.view;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.Pane;
+import javafx.util.Duration;
+
+public class UIStateManager {
+    private boolean criticalMode = false;
+    private Timeline criticalPulse;
+
+    public void update(double progress, ProgressBar bar, Pane hud) {
+        if (progress <= 0.3 && !criticalMode) {
+            criticalMode = true;
+            bar.getStyleClass().add("energy-bar-critical");
+            hud.getStyleClass().add("hud-pane-critical");
+
+            startPulse(hud);
+        } else if (progress > 0.3 && criticalMode) {
+            criticalMode = false;
+            bar.getStyleClass().remove("energy-bar-critical");
+            hud.getStyleClass().remove("hud-pane-critical");
+
+            stopPulse(hud);
+
+        }
+    }
+
+    private void startPulse (Pane hud) {
+        criticalPulse = new Timeline(
+                new KeyFrame(Duration.seconds(0.5), e -> hud.setOpacity(0.85)), new KeyFrame(Duration.seconds(1), e -> hud.setOpacity(1))
+        );
+        criticalPulse.setCycleCount(Timeline.INDEFINITE);
+        criticalPulse.play();
+    }
+
+    private void  stopPulse(Pane hud) {
+        if (criticalPulse != null) {
+            criticalPulse.stop();
+        }
+        hud.setOpacity(1);
+    }
+}

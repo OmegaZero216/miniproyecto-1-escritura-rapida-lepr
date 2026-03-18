@@ -7,7 +7,7 @@ import java.net.http.HttpResponse;
 import java.util.Arrays;
 import java.util.List;
 
-public class wordApiClient {
+public class WordApiClient {
     private static final String API_URL = "https://random-word-api.herokuapp.com/word?number=200&lang=es";
 
     public List<String> fetchWords() {

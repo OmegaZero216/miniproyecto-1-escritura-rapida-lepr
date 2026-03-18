@@ -3,7 +3,7 @@ package com.example.escritura_rapida.model;
 import java.util.List;
 import java.util.Random;
 
-public class wordRepository {
+public class WordRepository {
     private List<String> words;
     private Random random = new Random();
 

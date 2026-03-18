@@ -7,8 +7,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class gameStage extends Stage {
-    public gameStage() throws IOException {
+public class GameStage extends Stage {
+    public GameStage() throws IOException {
         FXMLLoader loader = new FXMLLoader(
                 getClass().getResource("/com/example/escritura_rapida/game-view.fxml")
         );

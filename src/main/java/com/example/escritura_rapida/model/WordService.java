@@ -2,9 +2,9 @@ package com.example.escritura_rapida.model;
 
 import java.util.List;
 
-public class wordService {
-    private wordRepository repository = new wordRepository();
-    private wordApiClient apiClient = new wordApiClient();
+public class WordService {
+    private WordRepository repository = new WordRepository();
+    private WordApiClient apiClient = new WordApiClient();
 
     public void initializeWords() {
         List<String> downloadedWords = apiClient.fetchWords();

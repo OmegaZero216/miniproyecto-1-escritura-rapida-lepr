@@ -1,7 +1,9 @@
 package com.example.escritura_rapida.controller;
 
-import com.example.escritura_rapida.model.gameManager;
-import com.example.escritura_rapida.model.wordService;
+import com.example.escritura_rapida.model.GameManager;
+import com.example.escritura_rapida.model.WordService;
+import com.example.escritura_rapida.view.ResultsView;
+import com.example.escritura_rapida.view.UIStateManager;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -10,15 +12,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class gameController {
+import java.io.IOException;
 
-    private wordService wordService = new wordService();
-    private gameManager gameManager = new gameManager();
+public class GameController {
+
+    private WordService wordService = new WordService();
+    private GameManager gameManager = new GameManager();
     private AnimationTimer timer;
-    private boolean criticalMode = false;
-    private Timeline criticalPulse;
+    private UIStateManager uiStateManager = new UIStateManager();
+    private Stage stage;
+
 
     @FXML
     private Label targetWord;
@@ -53,6 +60,8 @@ public class gameController {
             gameManager.correctWord();
 
             targetWord.setText(wordService.getRandomWord());
+
+            startTimer();
         }
         else {
             gameManager.incorrectWord();
@@ -79,6 +88,7 @@ public class gameController {
                 if (remaining <= 0) {
                     energyTimer.setProgress(0);
                     stop();
+                    handleTimeGameOver();
                     return;
                 }
 
@@ -87,31 +97,32 @@ public class gameController {
 
                 energyTimer.setProgress(progress);
 
-                updateCriticalState(progress);
+                uiStateManager.update(progress, energyTimer, mainHud);
             }
         };
-
         timer.start();
     }
 
-    private void updateCriticalState(double progress) {
-        if (progress <= 0.3 && !criticalMode) {
-            criticalMode = true;
-            energyTimer.getStyleClass().add("energy-bar-critical");
-            mainHud.getStyleClass().add("hud-pane-critical");
-            startCriticalPulse();
-        }
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
-    private void startCriticalPulse() {
-        criticalPulse = new Timeline(
-                new KeyFrame(Duration.seconds(0.5), event -> {
-                    mainHud.setOpacity(0.85);
-                }), new KeyFrame(Duration.seconds(1), event -> {
-                    mainHud.setOpacity(1);
-        })
-        );
-        criticalPulse.setCycleCount(Timeline.INDEFINITE);
-        criticalPulse.play();
+    private void handleTimeGameOver() {
+        String text = typingInput.getText();
+
+        timer.stop();
+
+        if (text.equals(targetWord.getText())) {
+            gameManager.correctWord();
+            statusMessage.setText("Ultima palabra correcta!");
+        }
+        else {
+            gameManager.incorrectWord();
+            statusMessage.setText("se acabó el tiempo!");
+        }
+
+        Stage stage = (Stage) mainHud.getScene().getWindow();
+        ResultsView resultsView = new ResultsView(stage);
+        resultsView.show(gameManager);
     }
 }
