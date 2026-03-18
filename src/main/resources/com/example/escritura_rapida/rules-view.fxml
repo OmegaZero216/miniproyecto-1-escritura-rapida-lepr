@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/17"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.example.escritura_rapida.controller.RulesController"
+           stylesheets="@rules-style.css"
+           styleClass="rules-root">
+
+    <VBox alignment="CENTER" spacing="25" maxWidth="700" styleClass="rules-panel">
+
+        <!-- Título -->
+        <Label text="REGLAS DEL JUEGO" styleClass="title"/>
+
+        <Separator/>
+
+        <!-- Contenido -->
+        <VBox spacing="10">
+
+            <Label text="1. El juego se trata de escribir lo más rápido posible las palabras que aparezcan en la pantalla"
+                   wrapText="true" styleClass="rule-text"/>
+            <Label text="2. Las palabras son completamente aleatorias, pero hay probabilidad de que se repitan"
+                   wrapText="true" styleClass="rule-text"/>
+            <Label text="3. Utiliza la tecla Enter para validar tu respuesta"
+                   wrapText="true" styleClass="rule-text"/>
+            <Label text="4. Revisa muy bien la ortografía, espacios, mayúsculas, tildes y otros signos de puntuación también cuentan"
+                   wrapText="true" styleClass="rule-text"/>
+            <Label text="5. Solo puedes equivocarte 1 vez por palabra, así que cuidado"
+                   wrapText="true" styleClass="rule-text warning"/>
+            <Label text="6. Cada cinco niveles el tiempo se reducirá, así que debes ser más rápido conforme avances" wrapText="true" styleClass="rule-text"/>
+
+        </VBox>
+        <Separator/>
+        <!-- Botón -->
+        <Button fx:id="startButton"
+                text="INICIAR"
+                onAction="#handleStart"
+                styleClass="start-button"/>
+    </VBox>
+</StackPane>

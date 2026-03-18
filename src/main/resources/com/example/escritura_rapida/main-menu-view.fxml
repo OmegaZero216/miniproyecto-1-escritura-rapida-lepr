@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx/17"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.example.escritura_rapida.controller.MainMenuController"
+           stylesheets="@main-menu-style.css"
+           styleClass="menu-root">
+
+    <!-- Fondo decorativo -->
+    <Pane styleClass="background-grid"/>
+
+    <!-- Contenido principal -->
+    <VBox alignment="CENTER" spacing="40">
+
+        <!-- Título -->
+        <Label text="ESCRITURA RÁPIDA"
+               styleClass="title"/>
+
+        <!-- Subtítulo -->
+        <Label text="SYSTEM READY"
+               styleClass="subtitle"/>
+
+        <!-- Botones -->
+        <VBox spacing="20" alignment="CENTER">
+
+            <Button fx:id="startButton"
+                    text="INICIAR MISIÓN"
+                    onAction="#handleStart"
+                    styleClass="menu-button"/>
+
+            <Button fx:id="rulesButton"
+                    text="REGLAS DEL JUEGO"
+                    onAction="#handleRules"
+                    styleClass="menu-button-alt"/>
+        </VBox>
+    </VBox>
+</StackPane>

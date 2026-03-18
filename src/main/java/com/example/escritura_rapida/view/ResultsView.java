@@ -9,8 +9,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Legacy helper to show the results screen.
+ * Prefer {@link com.example.escritura_rapida.controller.NavigationManager} for navigation.
+ */
 public class ResultsView {
 
+    /**
+     * Loads the results view into the provided stage and injects stats.
+     *
+     * @param stage target stage to update
+     * @param gameManager game state with stats
+     */
     public void show(Stage stage, GameManager gameManager) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/escritura_rapida/results-view.fxml"));

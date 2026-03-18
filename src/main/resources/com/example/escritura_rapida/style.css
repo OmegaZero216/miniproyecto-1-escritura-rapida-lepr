@@ -28,6 +28,7 @@
 /* TOP PANEL (LEVEL + TIMER) -------------------------------------------- */
 .top-panel {
     -fx-padding: 20 20 0 20;
+    -fx-alignment: center;
 }
 
 .mission-title {
@@ -35,9 +36,14 @@
     -fx-font-size: 22px;
     -fx-font-family: "Orbitron", "Consolas";
     -fx-effect: dropshadow(three-pass-box, #00eaff, 15, 0.5, 0, 0);
+    -fx-alignment: center;
 }
 
 /* ENERGY TIMER BAR ----------------------------------------------------- */
+.energy-bar {
+    -fx-pref-width: 500;
+}
+
 .energy-bar .track {
     -fx-background-color: #1a1a1a;
     -fx-background-radius: 0;
@@ -88,6 +94,7 @@
     -fx-font-family: "Orbitron", "Consolas";
     -fx-font-size: 24px;
     -fx-effect: dropshadow(three-pass-box, #00eaff, 15, 0, 0, 0);
+    -fx-alignment: center;
 }
 
 /* STATUS TEXT ---------------------------------------------------------- */
@@ -105,4 +112,9 @@
 
 .bottom-panel {
     -fx-padding: 20;
+}
+
+/* GLITCH EFFECT -------------------------------------------------------- */
+.glitch {
+    -fx-effect: dropshadow(gaussian, #ff3b3b, 20, 0.8, 0, 0);
 }

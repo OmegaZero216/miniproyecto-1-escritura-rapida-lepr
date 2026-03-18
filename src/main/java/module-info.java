@@ -8,4 +8,6 @@ module com.example.escritura_rapida {
     opens com.example.escritura_rapida to javafx.fxml;
     opens com.example.escritura_rapida.controller to javafx.fxml;
     exports com.example.escritura_rapida;
+    opens com.example.escritura_rapida.view to javafx.fxml;
+    opens com.example.escritura_rapida.model to javafx.fxml;
 }

@@ -10,7 +10,7 @@
        <Pane fx:id="backgroundGrid" styleClass="cyber-grid" />
        <BorderPane fx:id="mainHud" styleClass="hud-pane">
            <top>
-               <VBox alignment="TOP_LEFT" spacing="10" styleClass="top-panel">
+               <VBox alignment="CENTER" spacing="10" styleClass="top-panel">
                   <children>
                       <Label fx:id="levelLabel" styleClass="mission-title" text="MISSION LEVEL 01" />
                       <ProgressBar fx:id="energyTimer" prefWidth="350" progress="1.0" styleClass="energy-bar" />

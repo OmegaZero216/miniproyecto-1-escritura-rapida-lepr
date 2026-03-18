@@ -4,13 +4,13 @@ import com.example.escritura_rapida.model.GameManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
-import java.io.IOException;
+/**
+ * Controller for the results screen that displays stats and offers retry/exit actions.
+ */
+public class ResultsController implements NavigationAware, DataReceiver<GameManager> {
+    private NavigationManager navigationManager;
 
-import com.example.escritura_rapida.view.GameStage;
-
-public class ResultsController {
     @FXML
     private Label levelLabel;
 
@@ -32,26 +32,56 @@ public class ResultsController {
     @FXML
     private Button exitButton;
 
-    public void setStats (GameManager gameManager) {
+    /**
+     * Receives the navigation manager after FXML load.
+     *
+     * @param navigationManager central navigation manager
+     */
+    @Override
+    public void setNavigationManager(NavigationManager navigationManager) {
+        this.navigationManager = navigationManager;
+    }
+
+    /**
+     * Receives the game state from the previous screen.
+     *
+     * @param gameManager game manager containing stats
+     */
+    @Override
+    public void setData(GameManager gameManager) {
+        setStats(gameManager);
+    }
+
+    /**
+     * Populates the results UI with current stats.
+     *
+     * @param gameManager game manager containing stats
+     */
+    public void setStats(GameManager gameManager) {
+        levelLabel.setText(String.valueOf(gameManager.getLevel()));
         scoreLabel.setText(String.valueOf(gameManager.getScore()));
         correctLabel.setText(String.valueOf(gameManager.getCorrectWords()));
         incorrectLabel.setText(String.valueOf(gameManager.getIncorrectWords()));
         timeLabel.setText(String.valueOf(gameManager.getTimeRemaining() + "s"));
     }
 
+    /**
+     * Navigates back to the game screen to restart.
+     */
     @FXML
     private void handleRetry() {
-        try {
-            Stage stage = (Stage) retryButton.getScene().getWindow();
-            stage.close();
-            new GameStage();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (navigationManager != null) {
+            navigationManager.show(ViewRoutes.GAME);
         }
     }
 
+    /**
+     * Navigates back to the main menu.
+     */
     @FXML
     private void handleExit() {
-        System.exit(0);
+        if (navigationManager != null) {
+            navigationManager.show(ViewRoutes.MAIN_MENU);
+        }
     }
 }
