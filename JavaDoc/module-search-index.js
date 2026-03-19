@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"com.example.escritura_rapida"}];updateSearchResults();
